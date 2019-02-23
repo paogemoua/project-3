@@ -45,9 +45,18 @@ class Start extends Component {
                         <option value="8">6</option>
                     </select>
                 
+                <div>
+                    Time: <input type="time" id="myTime"></input>
+                </div>
+
+                <div>
+                    Date: <input type = "date" id="myDate"></input>
+                </div>
+                
                 <h5>Where are you playing?</h5>
-                <Map>
-                </Map>
+                <div id = "mapDiv">
+                    <Map></Map>
+                </div>
              
                 </form>
                 <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
