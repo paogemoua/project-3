@@ -1,1 +1,1 @@
-# SportsMeet
+# SportMeet
