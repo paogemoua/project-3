@@ -42,7 +42,7 @@ module.exports = function(app) {
   
   app.use(function (req, res, next){
     res.locals.loggedIn = false;
-    if (req.session.passport && typeof req.session.passport.user != "undefined") {
+    if (req.session.passport && typeof req.session.passport.user != "unknown") {
       res.locals.loggedIn = true;
     }
     next();  
