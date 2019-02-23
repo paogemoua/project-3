@@ -1,15 +1,15 @@
-var db = require("../models");
+//var db = require("../models");
 var passport = require("passport");
 var Auth0Strategy = require("passport-auth0");
 var session = require("express-session");
 
 
-// Passport Stuff
+// Passport things
 var strategy = new Auth0Strategy (
   {
-    domain: "motank.auth0.com",
-    clientID: "j_bCGaZyO59XGnXx4TbRSq6qH7y-vC80",
-    clientSecret: "VBCIB8L5V_qdoWzpy-2eB-l8nJFVJ9DenogKuUreHgZPVRQg8L3X8YqYUOCTYwju", 
+    domain: "sportmeet.auth0.com",
+    clientID: "Do2ia71b03qsQyZia46TINdn6sHJI5tn",
+    clientSecret: "Dk0x0Ps-bWxEM2nl3xJvm-JeJ5V31zMmxZG_-UNiSZsoTtn6DAl75PAL6hPBi5w_", 
     callbackURL: "http://localhost:3000/callback"
   },
 
@@ -31,7 +31,7 @@ module.exports = function(app) {
 
   app.use(
     session({
-      secret:"pic cylcer",
+      secret:"SportMeet",
       resave: true,
       saveUninitialized: true
     })
