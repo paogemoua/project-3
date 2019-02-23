@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Map from "../../components/startmap";
+//import Map from "../../components/startmap";
+import Map from "../../components/Map2";
 
 
 class Start extends Component {
@@ -55,7 +56,14 @@ class Start extends Component {
                 
                 <h5>Where are you playing?</h5>
                 <div id = "mapDiv">
-                    <Map></Map>
+                    <Map
+                    google = {this.props.google}
+                    center = {{lat: 18.5204, lng: 73.8567}}
+                    height = '300px'
+                    zoom = {15}
+                    />
+
+                  
                 </div>
              
                 </form>
