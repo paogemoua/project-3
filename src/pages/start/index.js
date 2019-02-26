@@ -5,9 +5,25 @@ import Map from "../../components/Map2";
 
 
 class Start extends Component {
+    state = {
+        sport:"",
+        skill:"",
+        playerAmount:"",
+        date:"",
+        time:""
+    }
+
+    //function for submitting the data (still needs to be done)
     onSubmit = () => {
-        console.log("Submit");
     };
+
+    //Function for updating the state as the dropdowns are updated
+    handleInputChange = event => {
+        const {name, value} = event.target;
+        this.setState({
+            [name]: value
+        });
+    }
     render(){
         return (
         <div>
@@ -15,8 +31,8 @@ class Start extends Component {
                 <h1>Start a Game</h1>
                 <form>
 
-                <label for="selectSport">Sport: </label>
-                    <select name = "selectSport" id = "selectSport">
+                <label for="spprt">Sport: </label>
+                    <select name = "sport" id = "selectSport">
                         <option value="Basketball">Basketball</option>
                         <option value="Football">Football</option>
                         <option value="Soccer">Soccer</option>
@@ -25,8 +41,8 @@ class Start extends Component {
                         <option value="Ultimate Frisbee">Ultimate Frisbee</option>
                     </select>
 
-                <label for="selectSkill">What is your groups overall skill level?</label>
-                    <select name = "selectSkill" id = "selectSkill">
+                <label for="skill">What is your groups overall skill level?</label>
+                    <select name = "skill" id = "selectSkill">
                         <option value="1">1 Beginner</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -47,11 +63,11 @@ class Start extends Component {
                     </select>
                 
                 <div>
-                    Time: <input type="time" id="myTime"></input>
+                    Time: <input name="time" type="time" id="time"></input>
                 </div>
 
                 <div>
-                    Date: <input type = "date" id="myDate"></input>
+                    Date: <input name="date" type = "date" id="myDate"></input>
                 </div>
                 
                 <h5>Where are you playing?</h5>
