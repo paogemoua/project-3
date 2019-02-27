@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 class Home extends Component {
-    render(){
+    render() {
         return (
         <div>
             <div className="jumbotron jumbotron-fluid">
