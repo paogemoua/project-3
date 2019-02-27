@@ -4,6 +4,8 @@ var bodyParser = require("body-parser");
 var session = require("express-session");
 var passport = require("passport");
 var Auth0Strategy = require("passport-auth0");
+//mongoose Library
+var mongoose = require('mongoose');
 
 
 var strategy = new Auth0Strategy (
@@ -58,6 +60,14 @@ app.use(function (req, res, next){
 
 app.get("/", function (req, res, next){
   res.render("index");
+});
+//connection callback
+mongoose.connect('mongodb://localhost/project-3', function (err) {
+
+if (err) throw err;
+ 
+   console.log('Successfully connected');
+ 
 });
 
 app.get("/login", passport.authenticate("auth0", {
