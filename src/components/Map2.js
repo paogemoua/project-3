@@ -41,17 +41,29 @@ componentDidMount(){
                         markerPosition: {
                             lat: coords.latitude,
                             lng: coords.longitude
+                        },
+                        mapPosition: {
+                          lat: coords.latitude,
+                          lng: coords.longitude
                         }
                     })
                 }
             )
         });
     } else {
-        Geocode.fromLatLng(this.state.mapPosition.lat, this.state.mapPosition.lng).then(
+        Geocode.fromLatLng(this.props.center.lat, this.props.center.lng).then(
             response => {
                 const address = response.results[0].formatted_address;
                 this.setState( {
-                    address: ( address ) ? address : ''
+                    address: ( address ) ? address : '',
+                    mapPosition: {
+                      lat: this.props.center.lat,
+                      lng: this.props.center.lng,
+                    },
+                    markerPosition: {
+                      lat: this.props.center.lat,
+                      lng: this.props.center.lng
+                    }
                 });
             }
         )
