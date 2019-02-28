@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import loading from './callback.png';
+import {withRouter} from 'react-router-dom';
+import auth0Client from '../Auth/authentication';
 
 class Callback extends Component {
+  async componentDidMount() {
+    await auth0Client.handleAuthentication();
+    this.props.history.replace('/');
+  }
   render() {
     const style = {
       position: 'absolute',
@@ -24,4 +30,8 @@ class Callback extends Component {
   }
 }
 
+<<<<<<< HEAD:src/Callback/Callback.js
+export default withRouter(Callback);
+=======
 export default Callback;
+>>>>>>> master:src/Callback.js

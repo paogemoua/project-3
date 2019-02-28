@@ -3,8 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
+    "auth0-js": "^9.10.0",
+    "express-jwt": "^5.3.1",
+=======
+    "@appbaseio/reactivesearch": "^3.0.0-beta.7",
+    "auth0-js": "^9.10.0",
+>>>>>>> master
     "google-maps-react": "^2.0.2",
     "google-react-maps": "^1.4.2",
+    "jwks-rsa": "^1.4.0",
     "mongodb": "^3.1.13",
     "mongoose": "^5.4.16",
     "react": "^16.8.2",
