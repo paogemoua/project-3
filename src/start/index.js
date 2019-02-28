@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Geocode from "react-geocode";
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar/index";
 import Map from "../components/Map2";
@@ -21,6 +22,11 @@ class Start extends Component {
             lat: 44.9740,
             lng: 93.227
         }
+    }
+
+    // Can we add function to get local position here and pass it in as a prop?
+    getLocal = () => {
+
     }
 
     toggle = event =>{
