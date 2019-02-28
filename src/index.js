@@ -6,6 +6,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { makeMainRoutes } from './Routes';
+import Start from './Start';
 
 
  const routes = makeMainRoutes();

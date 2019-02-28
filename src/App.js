@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/home";
-import Start from "./pages/start";
-import Find from "./pages/find";
+import Home from "./Home";
+import Start from ".App.test/start";
+import Find from "./Find";
 //import logo from './logo.svg';
 import './App.css';
 
