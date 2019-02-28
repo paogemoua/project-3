@@ -30,4 +30,8 @@ class Callback extends Component {
   }
 }
 
+<<<<<<< HEAD:src/Callback/Callback.js
 export default withRouter(Callback);
+=======
+export default Callback;
+>>>>>>> master:src/Callback.js
