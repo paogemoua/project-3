@@ -1,183 +1,141 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material/core/RadioGroup';
-import FormHelperText from '@material/core/FormHelperText';
-import FormControlLabel from '@material/core/FormControlLabel';
-import FormControl from '@material/core/FormControl';
-import FormLabel from '@material/core/FormLabel';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-        width: 200,
-    },
-    dense: {
-        marginTop: 19,
-    },
-    menu: {
-        width: 200,
-    },
     root: {
         display: 'flex',
+        flexWrap: 'wrap',
+        minWidth: 300,
+        width: '100%',
     },
-    formControl: {
-        margin: theme.spacing.unit * 3,
+    image: {
+        position: 'relative', 
+        height: 200,
+        [theme.breakpoints.down('xs')]: {
+            width: '100%' !important', 
+            height: 100,
+        },
+        '&:hover, &$focusVisible': {
+            zIndex: 1,
+            '& $imageBackdrop': {
+                opacity: 0,
+            },
+            '& $imageMarked': {
+                opacity: 0,
+            },
+            '& $imageTitle': {
+                border: '4px solid currentColor',
+            },
+        },
     },
-    group: {
-        margin: `${theme.spacing.unit}px 0`,
+    focusVisible: {},
+    imageButton: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: theme.palette.common.white,
+    },
+    imageSrc: {
+        position: 'absolute', 
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center 40%',
+    },
+    imageBackdrop: {
+        position: 'absolute', 
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        backgroundColor: theme.palette.common.black,
+        opacity: 0.4,
+        transition: theme.transition.create('opacity'),
+    },
+    imageTitle: {
+        position: 'relative',
+        padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 4}px ${theme.spacing.unit + 6}px`,
+    },
+    imageMarked: {
+        height: 3,
+        width: 18,
+        backgroundColor: theme.palette.common.white,
+        position: 'absolute',
+        bottom: -2,
+        left: 'calc(50% - 9px)',
+        transition: theme.transition.create('opacity'),
     },
 });
 
-const publicPrivate = [
+const images = [
     {
-        value: 'Public',
-        label: 'public',
+        url: '',
+        title: '',
+        width: '',
     },
     {
-        value: 'Private',
-        label: 'private',
-    },
-];
-
-const sports = [
-    {
-        value: 'Baseball',
-        label: 'Baseball',
+        url: '',
+        title: '',
+        width: '',
     },
     {
-        value: 'Basketball',
-        label: 'Basketball',
-    },
-    {
-        value: 'Football',
-        label: 'Football',
-    },
-    {
-        value: 'Golf',
-        label: 'Golf',
-    },
-    {
-        value: 'Hockey',
-        label: 'Hockey',
-    },
-    {
-        value: 'Volleyball',
-        label: 'Volleyball',
-    },
-    {
-        value: 'Soccer',
-        label: 'Soccer',
-    },
-    {
-        value: 'Softball',
-        label: 'Softball',
-    },
-    {
-        value: 'Tennis',
-        label: 'Tennis',
-    },
-    {
-        value: 'Rugby',
-        label: 'Rugby',
-    },
-    {
-        value: 'Ultimate',
-        label: 'Ultimate',
+        url: '',
+        title: '',
+        width: '',
     },
 ];
 
-class TextFields extends React.Component {
-    state = {
-        name: 'Central Park',
-        location: '',
-        addresss: '',
-        time: '',
-        info: '',
-        players: '',
-    };
+function ButtonBases(props) {
+    const { classes } = props;
 
-    handleChange = name => event => {
-        this.setState({ [name]: event.target.value });
-    };
-
-    render() {
-        const { classes } = this.props;
-
-        return (
-            <form className={classes.container} noValidate autoComplete="off">
-                <TextField
-                id="standard-required"
-                label="EventName"
-                className={classes.textField}
-                value={this.state.name}
-                onChange={this.handleChange('name')}
-                margin="normal"
-                />
-
-                <TextField
-                id="standard-required"
-                label="Location"
-                className={classes.textField}
-                value={this.state.location}
-                onChange={this.handleChange('location')}
-                margin="normal"
-                />
-
-                <TextField
-                id="standard-required"
-                label="Address"
-                className={classes.textField}
-                value={this.state.addresss}
-                onChange={this.handleChange('address')}
-                margin="normal"
-                />
-
-                <TextField
-                id="standard-required"
-                label="Time"
-                className={classes.textField}
-                value={this.state.time}
-                onChange={this.handleChange('time')}
-                margin="normal"
-                />
-
-                <TextField
-                id="standard-required"
-                label="Info"
-                className={classes.textField}
-                value={this.state.info}
-                onChange={this.handleChange('info')}
-                margin="normal"
-                />
-
-                <TextField
-                id="standard-select-sports"
-                select
-                label="Select"
-                className={classes.textField}
-                value={this.state.sports}
-                onChange={this.handleChange('sports')}
-                SelectProps={{
-                    MenuProps: {
-                        className: classes.menu,
-                    },
+    return (
+        <div className={classes.root}>
+            {images.map(image => (
+                <ButtonBase
+                focusRipple
+                key={image.title}
+                className={classes.image}
+                focusVisibleClassName={classes.focusVisible}
+                style={{
+                    width: image.width,
                 }}
-                helperText="Please select your sport."
-                margin="normal"
             >
-                {sports.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                    </MenuItem>
-                ))}
-            </TextField>
+                <span
+                className={classes.imageSrc}
+                style={{
+                    backgroundImage: `url(${image.url})`,
+                }}
+                />
+                <span className={classes.imageBackdrop} />
+                <span className={classes.imageButton}>
+                    <Typography
+                        component="span"
+                        variant="subtitle1"
+                        color="inherit"
+                        className={classes.imageTitle}
+                    >
+                        {image.title}
+                        <span className={classes.imageMarked} />
+                    </Typography>
+                </span>
+            </ButtonBase>
+            ))}
+        </div>
+    );
+}
+
+ButtonBases.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ButtonBases);
