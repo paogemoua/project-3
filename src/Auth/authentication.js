@@ -3,131 +3,69 @@
 
 
   
-    clientSecret: "Dk0x0Ps-bWxEM2nl3xJvm-JeJ5V31zMmxZG_-UNiSZsoTtn6DAl75PAL6hPBi5w_", 
-    callbackURL: "http://localhost:3000/callback"
+    //clientSecret: "Dk0x0Ps-bWxEM2nl3xJvm-JeJ5V31zMmxZG_-UNiSZsoTtn6DAl75PAL6hPBi5w_", 
+    //callbackURL: "http://localhost:3000/callback"
     import auth0 from 'auth0-js';
-    import { AUTH_CONFIG } from './auth0-variables';
-    import history from '../history';
     
-    export default class Auth {
-      accessToken;
-      idToken;
-      expiresAt;
-      userProfile;
-      scopes;
-      requestedScopes = 'openid profile read:messages write:messages';
-    
-      auth0 = new auth0.WebAuth({
-        domain: AUTH_CONFIG.sportmeet.auth0.com,
-        clientID: AUTH_CONFIG.Do2ia71b03qsQyZia46TINdn6sHJI5tn,
-        redirectUri: AUTH_CONFIG.callbackUrl,
-        audience: AUTH_CONFIG.apiUrl,
-        responseType: 'token id_token',
-        scope: this.requestedScopes
-      });
-    
+    class Auth {
       constructor() {
-        this.login = this.login.bind(this);
-        this.logout = this.logout.bind(this);
+        this.auth0 = new auth0.WebAuth({
+          domain: 'kingeric.auth0.com',
+          audience: 'https://kingeric.auth0.com/userinfo',
+          clientID: 'RgypgNKbpL15E9tPKlmrOYbnEGfaX9UJ',
+          redirectUri: 'http://localhost:3000/callback',
+          responseType: 'id_token',
+          scope: 'openid profile'
+        });
+
+        this.getProfile = this.getProfile.bind(this);
         this.handleAuthentication = this.handleAuthentication.bind(this);
         this.isAuthenticated = this.isAuthenticated.bind(this);
-        this.userHasScopes = this.userHasScopes.bind(this);
-        this.getAccessToken = this.getAccessToken.bind(this);
-        this.getIdToken = this.getIdToken.bind(this);
-        this.renewSession = this.renewSession.bind(this);
-        this.getProfile = this.getProfile.bind(this);
+        this.signIn = this.signIn.bind(this);
+        this.signOut = this.signOut.bind(this);
+
       }
     
-      login() {
-        this.auth0.authorize();
+      getProfile() {
+        return this.profile;
       }
-    
-      handleAuthentication() {
-        this.auth0.parseHash((err, authResult) => {
-          if (authResult && authResult.accessToken && authResult.idToken) {
-            this.setSession(authResult);
-          } else if (err) {
-            history.replace('/home');
-            console.log(err);
-            alert(`Error: ${err.error}. Check the console for further details.`);
-          }
-        });
-      }
-    
-      getAccessToken() {
-        return this.accessToken;
-      }
-    
+
       getIdToken() {
         return this.idToken;
       }
-    
-      setSession(authResult) {
-        // Set isLoggedIn flag in localStorage
-        localStorage.setItem('isLoggedIn', 'true');
-    
-        // Set the time that the access token will expire at
-        let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
-        this.accessToken = authResult.accessToken;
-        this.idToken = authResult.idToken;
-        this.expiresAt = expiresAt;
-    
-        // Set the users scopes
-        this.scopes = authResult.scope || this.requestedScopes || '';
-    
-        // navigate to the home route
-        history.replace('/home');
-      }
-    
-      renewSession() {
-        this.auth0.checkSession({}, (err, authResult) => {
-           if (authResult && authResult.accessToken && authResult.idToken) {
-             this.setSession(authResult);
-           } else if (err) {
-             this.logout();
-             console.log(err);
-             alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-           }
-        });
-      }
-    
-      getProfile(cb) {
-        this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-          if (profile) {
-            this.userProfile = profile;
-          }
-          cb(err, profile);
-        });
-      }
-    
-      logout() {
-        // Remove tokens and expiry time
-        this.accessToken = null;
-        this.idToken = null;
-        this.expiresAt = 0;
-    
-        // Remove user scopes
-        this.scopes = null;
-    
-        // Remove user profile
-        this.userProfile = null;
-    
-        // Remove isLoggedIn flag from localStorage
-        localStorage.removeItem('isLoggedIn');
-    
-        // navigate to the home route
-        history.replace('/home');
-      }
-    
+
       isAuthenticated() {
-        // Check whether the current time is past the
-        // access token's expiry time
-        let expiresAt = this.expiresAt;
-        return new Date().getTime() < expiresAt;
+        return new Date().getTime() < this.expiresAt;
       }
-    
-      userHasScopes(scopes) {
-        const grantedScopes = this.scopes.split(' ');
-        return scopes.every(scope => grantedScopes.includes(scope));
+
+      signIn() {
+        this.auth0.authorize();
+      }
+
+      handleAuthentication() {
+        return new Promise((resolve, reject) => {
+          this.auth0.parseHash((err, authResult) => {
+            if (err) return reject(err);
+            if (!authResult || !authResult.idToken) {
+              return reject(err);
+            }
+            this.idToken = authResult.idToken;
+            this.profile = authResult.idTokenPayload;
+            // set the time that the id token will expire at
+            this.expiresAt = authResult.idTokenPayload.exp * 1000;
+            resolve();
+          });
+        })
+      }
+
+      signOut() {
+        // clear id token, profile, and expiration
+        this.idToken = null;
+        this.profile = null;
+        this.expiresAt = null;
       }
     }
+
+const auth0Client = new Auth();
+
+export default auth0Client;

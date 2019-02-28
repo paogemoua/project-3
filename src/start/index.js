@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-//import Map from "../../components/startmap";
-import Map from "../../components/Map2";
+import Navbar from "../components/navbar/index";
+import Map from "../components/Map2";
+import Geocode from "react-geocode";
+import navbar from "../components/navbar/index";
+Geocode.setApiKey("AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0");
+Geocode.enableDebug();
+
 
 
 class Start extends Component {
@@ -11,7 +16,11 @@ class Start extends Component {
         skill:"",
         playerAmount:"",
         date:"",
-        time:""
+        time:"",
+        startPosition:{
+            lat: 44.9740,
+            lng: 93.227
+        }
     }
 
     toggle = event =>{
@@ -46,13 +55,34 @@ class Start extends Component {
             [name]: value
         });
     }
+
+   // componentDidMount(){
+   //     if (navigator && navigator.geolocation){
+   //         navigator.geolocation.getCurrentPosition(pos => {
+   //             const coords = pos.coords;
+   //             Geocode.fromLatLng( coords.latitude, coords.longitude).then(
+   //                 response => { 
+   //                     const address = response.results[0].formatted_address;
+   //                     this.setState({
+   //                         //address: ( address ) ? address : '',
+   //                         startPosition: {
+   //                             lat: coords.latitude,
+   //                             lng: coords.longitude
+   //                         }
+   //                     })
+   //                 }
+   //             )
+   //         });
+   //     } 
+   // }
     render(){
         return (
         <div>
+            <Navbar></Navbar>
             <div className = "container">
                 <h1>Start a Game</h1>
             
-            {this.state.formToggle==0 ?(
+            {this.state.formToggle===0 ?(
                 <form>
                 <label for="spprt">Sport: </label>
                 <select name = "sport" id = "selectSport" onChange = {this.handleInputChange}>
@@ -103,7 +133,7 @@ class Start extends Component {
                 <div id = "mapDiv">
                     <Map
                     google = {this.props.google}
-                    center = {{lat: 18.5204, lng: 73.8567}}
+                    center = {{lat: 44.0740, lng: 93.227}}
                     height = '300px'
                     zoom = {12}
                     /> 
