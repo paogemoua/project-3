@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React from "react";
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -182,17 +181,3 @@ class TextFields extends React.Component {
                     </MenuItem>
                 ))}
             </TextField>
-            </form>
-        );
-    }
-}
-
-TextFields.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-RadioButtonsGroup.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(TextFields)(RadioButtonsGroup);
