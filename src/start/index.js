@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Geocode from "react-geocode";
 import { Link } from "react-router-dom";
 //import Map from "../../components/startmap";
 import Map from "../../components/Map2";
@@ -12,6 +13,11 @@ class Start extends Component {
         playerAmount:"",
         date:"",
         time:""
+    }
+
+    // Can we add function to get local position here and pass it in as a prop?
+    getLocal = () => {
+
     }
 
     toggle = event =>{
@@ -52,7 +58,7 @@ class Start extends Component {
             <div className = "container">
                 <h1>Start a Game</h1>
             
-            {this.state.formToggle==0 ?(
+            {this.state.formToggle===0 ?(
                 <form>
                 <label for="spprt">Sport: </label>
                 <select name = "sport" id = "selectSport" onChange = {this.handleInputChange}>

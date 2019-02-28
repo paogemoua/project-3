@@ -2,9 +2,6 @@
 
 
 
-  
-    clientSecret: "Dk0x0Ps-bWxEM2nl3xJvm-JeJ5V31zMmxZG_-UNiSZsoTtn6DAl75PAL6hPBi5w_", 
-    callbackURL: "http://localhost:3000/callback"
     import auth0 from 'auth0-js';
     import { AUTH_CONFIG } from './auth0-variables';
     import history from '../history';
