@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Callback from './Callback/Callback';
-import Home from "./home/index";
-import Start from "./start/index";
-import Find from "./find/index";
+import Callback from './Callback';
+import Home from "./Home/Home";
+import Start from "./Start/index";
+import Find from "./Find/index";
 //import logo from './logo.svg';
 import './App.css';
 
@@ -14,9 +14,9 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path = "/" component = {Home} />
-            <Route exact path = "/start" component = {Start} />
-            <Route exact path = "/find" component = {Find} />
-            <Route exact paty = '/callback' component={Callback}/>
+            <Route exact path = "/Start" component = {Start} />
+            <Route exact path = "/Find" component = {Find} />
+            <Route exact paty = '/Callback' component={Callback}/>
           </Switch>
         </div>
       </Router>

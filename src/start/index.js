@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import Geocode from "react-geocode";
+//import Geocode from "react-geocode";
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar/index";
 import Map from "../components/Map2";
 import Geocode from "react-geocode";
-import navbar from "../components/navbar/index";
 Geocode.setApiKey("AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0");
 Geocode.enableDebug();
 
