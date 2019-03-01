@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import loading from './callback.png';
+import loading from './callback.jpeg';
 import {withRouter} from 'react-router-dom';
 import auth0Client from './Auth/authentication';
 
