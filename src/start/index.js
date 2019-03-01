@@ -3,8 +3,8 @@ import Geocode from "react-geocode";
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar/index";
 import Map from "../components/Map2";
-import Geocode from "react-geocode";
-import navbar from "../components/navbar/index";
+import auth0Client from "../Auth/authentication";
+import API from "../utils/API";
 Geocode.setApiKey("AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0");
 Geocode.enableDebug();
 
@@ -18,6 +18,7 @@ class Start extends Component {
         playerAmount:"",
         date:"",
         time:"",
+        user: "", 
         startPosition:{
             lat: 44.9740,
             lng: 93.227
@@ -46,9 +47,13 @@ class Start extends Component {
         const data = {
             sport: this.state.sport,
             skill: this.state.skill,
-            playerAmount: this.state.playerAmount,
-            date: this.state.date,
+            players: this.state.playerAmount,
             time: this.state.time,
+            date: this.state.date,
+            locationLat: this.state.startPosition.lat,   // *
+            locationLng: this.state.startPosition.lng,   // *
+            address: "234 Clermont Street, St Paul MN",  // * Need to get location from map component
+            user: this.state.user
         }
         console.log(data);
     };
@@ -62,6 +67,13 @@ class Start extends Component {
         });
     }
 
+    componentDidMount(){
+        if(auth0Client.getProfile()){
+            this.setState({
+                user: auth0Client.getProfile().name
+            })
+        }
+    };
    // componentDidMount(){
    //     if (navigator && navigator.geolocation){
    //         navigator.geolocation.getCurrentPosition(pos => {

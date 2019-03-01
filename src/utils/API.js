@@ -8,15 +8,15 @@ export default {
     return axios.get("/api/games");
   },
   // Gets the game with the given id
-  getBook: function(id) {
+  getGame: function(id) {
     return axios.get("/api/games/" + id);
   },
   // Deletes the game with the given id
-  deleteBook: function(id) {
+  deleteGame: function(id) {
     return axios.delete("/api/games/" + id);
   },
   // Saves a game to the database
-  saveBook: function(bookData) {
+  saveGame: function(bookData) {
     return axios.post("/api/games", bookData);
   }
 };

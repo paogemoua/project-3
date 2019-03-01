@@ -1,17 +1,17 @@
 const router = require("express").Router();
-const booksController = require("../../controllers/booksController");
+const gamesController = require("../../controllers/gamesController");
 
 
 // Matches with "/api/games"
 router.route("/")
-    .get()
-    .post();
+    .get(gamesController.findAll)
+    .post(gamesController.create);
   //.get(booksController.findAll)
   //.post(booksController.create);
 
 // Matches with "/api/games/:id" can delete 
 router.route("/:id")
-    .delete();
+    .delete(gamesController.remove);
   //.get(booksController.findById)
   //.put(booksController.update)
   //.delete(booksController.remove);

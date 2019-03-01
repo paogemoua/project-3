@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Callback from './Callback/Callback';
-import Home from "./home/index";
+import Callback from './Callback';
+import Home from "./home/Home.js";
 import Start from "./start/index";
 import Find from "./find/index";
 //import logo from './logo.svg';
