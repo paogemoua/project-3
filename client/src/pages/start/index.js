@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-//import Geocode from "react-geocode";
+import Geocode from "react-geocode";
 import { Link } from "react-router-dom";
-import Navbar from "../components/navbar/index";
-import Map from "../components/Map2";
-import auth0Client from "../Auth/authentication";
-import API from "../utils/API";
+import Navbar from "../../components/navbar/index";
+import Map from "../../components/Map2";
+import auth0Client from "../../Auth/authentication";
+import API from "../../utils/API";
 Geocode.setApiKey("AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0");
 Geocode.enableDebug();
 
@@ -44,6 +44,7 @@ class Start extends Component {
 
     //function for submitting the data (still needs to be done)
     onSubmit = () => {
+        
         const data = {
             sport: this.state.sport,
             skill: this.state.skill,
@@ -56,6 +57,9 @@ class Start extends Component {
             user: this.state.user
         }
         console.log(data);
+        API.saveGame(data);
+        window.location.href = '/find';
+
     };
 
     //Function for updating the state as the dropdowns are updated
@@ -72,6 +76,8 @@ class Start extends Component {
             this.setState({
                 user: auth0Client.getProfile().name
             })
+        } else {
+            auth0Client.signIn();
         }
     };
    // componentDidMount(){
@@ -149,12 +155,12 @@ class Start extends Component {
                 <div>
                 <h5>Where are you playing?</h5>
                 <div id = "mapDiv">
-                    <Map
+                <Map
                     google = {this.props.google}
                     center = {{lat: 44.0740, lng: 93.227}}
                     height = '300px'
                     zoom = {12}
-                    /> 
+               /> 
                 </div>
                 <button id = "back" onClick = {this.toggle}>Back</button>
                 <button type="button" class="btn btn-primary btn-lg btn-block" onClick = {this.onSubmit}>Submit</button>

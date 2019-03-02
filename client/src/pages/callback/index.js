@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import loading from './callback.jpeg';
+import loading from './callback.png';
 import {withRouter} from 'react-router-dom';
-import auth0Client from './Auth/authentication';
+import auth0Client from '../../Auth/authentication';
 
 class Callback extends Component {
   async componentDidMount() {

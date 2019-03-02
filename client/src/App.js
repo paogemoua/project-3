@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Callback from './Callback.js';
-import Home from "./home/Home.js";
-import Start from "./start/index";
-import Find from "./find/index";
+import Callback from './pages/callback/index';
+import Home from "./pages/home/Home";
+import Start from "./pages/start/index";
+import Find from "./pages/find/index";
 //import logo from './logo.svg';
 import './App.css';
 

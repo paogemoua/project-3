@@ -1,9 +1,9 @@
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {Row, Col, Container} from "../components/Grid";
-import API from "../utils/API";
-import {GameList, GameListItem} from '../components/gameItem';
+import {Row, Col, Container} from "../../components/Grid";
+import API from "../../utils/API";
+import {GameList, GameListItem} from '../../components/gameItem';
 
 class Find extends Component {
     state = {
@@ -40,7 +40,7 @@ class Find extends Component {
                         return (
                             <GameListItem
                             key = {game._id}
-                            sport = {game.title}
+                            sport = {game.sport}
                             players = {game.players}
                             time = {game.time}
                             date = {game.date}
