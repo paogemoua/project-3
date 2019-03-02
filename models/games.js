@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
@@ -8,10 +8,11 @@ var Schema = mongoose.Schema;
 var GameSchema = new Schema({
   // `title` is required and of type String
   sport: {
-    type: String
+    type: String,
+    required: true
   },
   skill: {
-     type: String
+    type: String
   },
   players: {
     type: String
@@ -20,19 +21,20 @@ var GameSchema = new Schema({
     type: String
   },
   date: {
-    type: Date
+    type: Date,
+    default: Date.now
   },
   locationLat: {
-      type: Number
+    type: Number
   },
   locationLng: {
-      type: Number
+    type: Number
   },
   address: {
-      type: String
+    type: String
   },
   user: {
-      tupe: String
+    type: String
   }
 });
 

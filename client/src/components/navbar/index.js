@@ -13,6 +13,9 @@ function NavBar(props) {
           <Link className="navbar-brand" to="/">
             SportMeet
           </Link>
+          <Link className="navbar-brand" to="/">
+            Home
+          </Link>
           {
             !auth0Client.isAuthenticated() &&
             <button className="btn btn-dark" onClick={auth0Client.signIn}>Sign In</button>
