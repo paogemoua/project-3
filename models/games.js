@@ -37,7 +37,7 @@ var GameSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Book = mongoose.model("Book", GameSchema);
+var Game = mongoose.model("Game", GameSchema);
 
 // Export the Article model
-module.exports = Book;
+module.exports = Game;

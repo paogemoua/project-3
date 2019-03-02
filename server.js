@@ -8,7 +8,6 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 //var router = require("./routes/index.js");
 
-const MONGODB_URI = require("./config/keys");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -26,7 +25,7 @@ app.use(routes);
 //mongoose.connect(MONGODB_URI, {useNewUrlParser:true});
 
 mongoose.connect(
-  MONGODB_URI || "mongodb://localhost/games", 
+  process.env.MONGODB_URI || "mongodb://localhost/games", 
   {
     useMongoClient: true
   }
