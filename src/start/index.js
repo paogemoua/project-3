@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Geocode from "react-geocode";
+//import Geocode from "react-geocode";
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar/index";
 import Map from "../components/Map2";
